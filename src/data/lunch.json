@@ -1,0 +1,88 @@
+[
+    {
+        "id": 7,
+        "name": "Papas Fritas",
+        "price": "5.00"
+    },
+    {
+        "id": 8,
+        "name": "Aros de Cebolla",
+        "price": "5.00"
+    },
+    {
+        "id": 9,
+        "name": "Agua 500ml",
+        "price": "5.00"
+    },
+    {
+        "id": 10,
+        "name": "Agua 750ml",
+        "price": "7.00"
+    },
+    {
+        "id": 11,
+        "name": "Gaseosa 500ml",
+        "price": "7.00"
+    },
+    {
+        "id": 12,
+        "name": "Gaseosa 750ml",
+        "price": "10.00"
+    },
+    {
+        "burger": [
+            {
+                "id": 5,
+                "name": "simple",
+                "price": "10.00",
+                "type": [
+                    {
+                        "name": "res"
+                    },
+                    {
+                        "name": "pollo"
+                    },
+                    {
+                        "name": "vegetariana"
+                    }
+                ],
+                "extra": [
+                    {
+                        "name": "Queso",
+                        "price": "1.00"
+                    },
+                    {
+                        "name": "Huevo",
+                        "price": "1.00"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "name": "doble",
+                "price": "15.00",
+                "type": [
+                    {
+                        "name": "res"
+                    },
+                    {
+                        "name": "pollo"
+                    },
+                    {
+                        "name": "vegetariana"
+                    }
+                ],
+                "extra": [
+                    {
+                        "name": "Queso",
+                        "price": "1.00"
+                    },
+                    {
+                        "name": "Huevo",
+                        "price": "1.00"
+                    }
+                ]
+            }
+        ]
+    }
+]

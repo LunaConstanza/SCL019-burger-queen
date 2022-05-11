@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes as Switch, Route, Link } from "react-ro
 import Waiter from './components/Waiter';
 import './App.css';
 import logo from './images/logo.png';
+import fail from './images/construction.png';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         </div>
         <Switch>
           <Route path='/garzones' element={<Waiter />} />
-          <Route path='/cocina' element='APP COCINA EN CONSTRUCCIÓN' />
+          <Route path='/cocina' element={<img width='50%' src={fail} alt='Sitio en construcción.' />} />
           <Route path='/' />
         </Switch>
       </div>
