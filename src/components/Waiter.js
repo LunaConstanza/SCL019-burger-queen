@@ -1,67 +1,42 @@
-import React from 'react';
-import Breakfast from '../data/breakfast.json';
-import Lunch from '../data/lunch.json'
+import React, { useState } from 'react';
+import Food from './Food';
 import Order from './Order'
-import { Button, UncontrolledCollapse } from 'reactstrap';
+import Breakfast from '../data/breakfast.json';
+import Lunch from '../data/lunch.json';
 
 function Waiter() {
+    const [orderFood, setOrderFood] = useState ([]);
+
+    const onAddOrder = (food) => {
+        const foodExist = orderFood.find(f => f.id === food.id);
+        if (foodExist) {
+            setOrderFood(
+                orderFood.map(f =>
+                    f.id === food.id ? {...foodExist, qty: foodExist.qty + 1} : f
+                )
+            )
+        } else {
+            setOrderFood([...orderFood, {...food, qty: 1}]);
+        }
+    }
+    const onRemoveFood = (food) => {
+        const foodExist = orderFood.find(f => f.id === food.id);
+        if (foodExist.qty === 1) {
+            setOrderFood(
+                orderFood.filter(f => f.id !== food.id)
+            )
+        } else {
+            setOrderFood(
+                orderFood.map(f => 
+                    f.id === food.id ? {...foodExist, qty: foodExist.qty - 1} : f)
+            )
+        }
+    }
     return (
-        <div className='container'>
-            {/* {this.props.numero} */}
-            <div>
-                <div>
-                    <Button color="info" outline id='toggler' style={{ marginBottom: '1rem' }}>
-                        DESAYUNO
-                    </Button>
-                    <UncontrolledCollapse toggler="#toggler">
-                        {
-                            Breakfast && Breakfast.map(order => {
-                                return (
-                                    <Button color='success' key={order.id}>
-                                        <p>{order.name}</p>
-                                        <p>{order.price}</p>
-                                    </Button>
-                                )
-                            })
-                        }
-                    </UncontrolledCollapse>
-                </div>
-                <div>
-                    <Button color="info" outline id='toggler2' style={{ marginBottom: '1rem' }}>
-                        ALMUERZO
-                    </Button>
-                    <UncontrolledCollapse toggler="#toggler2">
-                        {
-                            Lunch && Lunch.map(order => {
-                                return (
-                                    <Button color='success' key={order.id}>
-                                        <p>{order.name}</p>
-                                        <p>{order.price}</p>
-                                    </Button>
-                                )
-                            })
-                        }
-                        {
-                            Lunch && Lunch.map(order => {
-                                return (
-                                    order.burger && order.burger.map(burger => {
-                                        return (
-                                            <Button color='success' key={burger.id}>
-                                                <p>{burger.name}</p>
-                                                <p>{burger.price}</p>
-                                            </Button>
-                                        )
-                                    })
-                                )
-                            })
-                        }
-                    </UncontrolledCollapse>
-                </div>
-            </div>
-            <div>
-                <Order />
-            </div>
-        </div >
+        <main className='container'>
+            <Food onAddOrder={onAddOrder} foodB={Breakfast} foodL={Lunch} />
+            <Order onAddOrder={onAddOrder} onRemoveFood={onRemoveFood} orderFood={orderFood}/>
+        </main>
     )
 }
 
