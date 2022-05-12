@@ -1,12 +1,13 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 
-function TableHeader() {
+function TableHeader(props) {
+    const {numberTable} = props;
     return (
         <thead>
             <tr>
                 <th>Ud.</th>
-                <th>Orden</th>
+                <th>Mesa</th>
                 <th>Precio</th>
                 <th>Agregar</th>
                 <th>Eliminar</th>
@@ -20,17 +21,17 @@ function TableBody(props) {
     const { onAddOrder, onRemoveFood, orderFood } = props;
     return (
         <tbody>
-            <tr>{orderFood.length === 0 && <th>Agrega algo del menú.</th>}</tr>
+            <tr>{orderFood.length === 0 && <th>Agrega un producto del menú.</th>}</tr>
             {orderFood.map(item => (
                 <tr key={item.id}>
                     <td>{item.qty}</td>
                     <td>{item.name}</td>
                     <td>${item.price.toFixed(2)} c/u</td>
                     <td>
-                        <Button onClick={() => onAddOrder(item)} className='add'>+</Button>
+                        <Button onClick={() => onAddOrder(item)} color="info">+</Button>
                     </td>
                     <td>
-                        <Button onClick={() => onRemoveFood(item)} className='remove danger' close />
+                        <Button onClick={() => onRemoveFood(item)} color='danger' close />
                     </td>
                 </tr>
             ))}
@@ -40,14 +41,21 @@ function TableBody(props) {
 
 function TableFoot(props) {
     const { orderFood } = props;
+    const totalFoods = orderFood.reduce((a, b) => a + b.qty, 0);
     const totalPrice = orderFood.reduce((a, b) => a + b.price * b.qty, 0);
     return (
         <tfoot>
             {orderFood.length !== 0 && (
                 <tr>
-                    <th></th>
-                    <th className='fw-bold'>TOTAL:</th>
+                    <th>{totalFoods} productos</th>
+                    <th>TOTAL A PAGAR:</th>
                     <th>${totalPrice.toFixed(2)}</th>
+                    <th>
+                        <Button onClick={() => alert('La boleta se esta imprimiento.')} color="dark">PAGAR</Button>
+                    </th>
+                    <th>
+                        <Button onClick={() => alert('Orden enviada a la cocina.')} color="primary">ENVIAR</Button>
+                    </th>
                 </tr>
             )}
         </tfoot>
@@ -55,10 +63,10 @@ function TableFoot(props) {
 }
 
 function Order(props) {
-    const { onAddOrder, onRemoveFood, orderFood } = props;
+    const { numberTable, onAddOrder, onRemoveFood, orderFood } = props;
     return (
         <Table hover responsive className='table-info'>
-            <TableHeader />
+            <TableHeader orderFood={numberTable} />
             <TableBody onAddOrder={onAddOrder} onRemoveFood={onRemoveFood} orderFood={orderFood} />
             <TableFoot orderFood={orderFood} />
         </Table>

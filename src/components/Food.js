@@ -1,10 +1,25 @@
 import React from 'react';
-import { Button, UncontrolledCollapse } from 'reactstrap';
+import { FormGroup, Label, Input, Button, UncontrolledCollapse } from 'reactstrap';
 
 function Food(props) {
-    const { onAddOrder, foodB, foodL } = props;
+    const { numberTable, tables, onAddOrder, foodB, foodL } = props;
     return (
-        <div>
+        <div container>
+            <FormGroup>
+                <Label className='text-white' for="exampleSelect">
+                    MESA:
+                </Label>
+                <Input
+                    id="exampleSelect"
+                    name="select"
+                    type="select"
+                >
+                    <option selected value="all">Seleccionar</option>
+                    {tables.map(table => (
+                        <option onClick={() => numberTable(table)}>{table.number}</option>
+                    ))}
+                </Input>
+            </FormGroup>
             <div>
                 <Button color="info" outline id='toggler' style={{ marginBottom: '1rem' }}>
                     DESAYUNO
@@ -13,7 +28,7 @@ function Food(props) {
                     {
                         foodB && foodB.map(order => {
                             return (
-                                <Button onClick={()=>onAddOrder(order)} color='success' key={order.id}>
+                                <Button onClick={() => onAddOrder(order)} color='success' key={order.id}>
                                     <p>{order.name}</p>
                                     <p>${order.price.toFixed(2)}</p>
                                 </Button>
@@ -30,7 +45,7 @@ function Food(props) {
                     {
                         foodL && foodL.map(order => {
                             return (
-                                <Button onClick={()=>onAddOrder(order)} color='success' key={order.id}>
+                                <Button onClick={() => onAddOrder(order)} color='success' key={order.id}>
                                     <p>{order.name}</p>
                                     <p>${order.price}</p>
                                 </Button>
@@ -42,7 +57,7 @@ function Food(props) {
                             return (
                                 order.burger && order.burger.map(burger => {
                                     return (
-                                        <Button onClick={()=>onAddOrder(burger)} color='success' key={burger.id}>
+                                        <Button onClick={() => onAddOrder(burger)} color='success' key={burger.id}>
                                             <p>{burger.name}</p>
                                             <p>${burger.price}</p>
                                         </Button>
