@@ -6,21 +6,17 @@ import Lunch from '../data/lunch.json';
 import Tables from '../data/tables.json';
 
 function Waiter() {
-    const [orderFood, setOrderFood] = useState ([]);
-    const dataTables = {};
-    const numberTable = (table) => {
-        dataTables = table.number;
-    }
+    const [orderFood, setOrderFood] = useState([]);
     const onAddOrder = (food) => {
         const foodExist = orderFood.find(f => f.id === food.id);
         if (foodExist) {
             setOrderFood(
                 orderFood.map(f =>
-                    f.id === food.id ? {...foodExist, qty: foodExist.qty + 1} : f
+                    f.id === food.id ? { ...foodExist, qty: foodExist.qty + 1 } : f
                 )
             )
         } else {
-            setOrderFood([...orderFood, {...food, qty: 1}]);
+            setOrderFood([...orderFood, { ...food, qty: 1 }]);
         }
     }
     const onRemoveFood = (food) => {
@@ -31,15 +27,32 @@ function Waiter() {
             )
         } else {
             setOrderFood(
-                orderFood.map(f => 
-                    f.id === food.id ? {...foodExist, qty: foodExist.qty - 1} : f)
+                orderFood.map(f =>
+                    f.id === food.id ? { ...foodExist, qty: foodExist.qty - 1 } : f)
             )
         }
     }
+
+// ********************   INTENTO DE PASAR LA MESA **************
+    const [dataTables, setDataTables] = useState([]);
+    const numberTable = (table) => {
+        const tableSelect = dataTables.find(t => t.number === table.number);
+        if (tableSelect) {
+            setDataTables(
+                dataTables.map(t =>
+                    t.number === table.number ? { ...tableSelect } : t.number
+                )
+            )
+        } else {
+            setDataTables([...dataTables])
+        }
+    }
+// ********************  FIN INTENTO DE PASAR LA MESA **************
+
     return (
-        <main className='container'>
-            <Food numberTable={numberTable} tables={Tables} onAddOrder={onAddOrder} foodB={Breakfast} foodL={Lunch}/>
-            <Order numberTable={numberTable} onAddOrder={onAddOrder} onRemoveFood={onRemoveFood} orderFood={orderFood}/>
+        <main>
+            <Food numberTable={numberTable} tables={Tables} onAddOrder={onAddOrder} foodB={Breakfast} foodL={Lunch} />
+            <Order dataTables={dataTables} onAddOrder={onAddOrder} onRemoveFood={onRemoveFood} orderFood={orderFood} />
         </main>
     )
 }

@@ -1,5 +1,61 @@
 [
     {
+        "id": "5",
+        "name": "Hamburguesa Simple",
+        "price": 10,
+        "type": [
+            {
+                "name": "res"
+            },
+            {
+                "name": "pollo"
+            },
+            {
+                "name": "vegetariana"
+            }
+        ],
+        "extra": [
+            {
+                "id": "13",
+                "name": "Queso",
+                "price": 1
+            },
+            {
+                "id": "14",
+                "name": "Huevo",
+                "price": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "name": "Hamburguesa Doble",
+        "price": 15,
+        "type": [
+            {
+                "name": "res"
+            },
+            {
+                "name": "pollo"
+            },
+            {
+                "name": "vegetariana"
+            }
+        ],
+        "extra": [
+            {
+                "id": "15",
+                "name": "Queso",
+                "price": 1
+            },
+            {
+                "id": "16",
+                "name": "Huevo",
+                "price": 1
+            }
+        ]
+    },
+    {
         "id": "7",
         "name": "Papas Fritas",
         "price": 5
@@ -28,65 +84,5 @@
         "id": "12",
         "name": "Gaseosa 750ml",
         "price": 10
-    },
-    {
-        "burger": [
-            {
-                "id": "5",
-                "name": "simple",
-                "price": 10,
-                "type": [
-                    {
-                        "name": "res"
-                    },
-                    {
-                        "name": "pollo"
-                    },
-                    {
-                        "name": "vegetariana"
-                    }
-                ],
-                "extra": [
-                    {   
-                        "id": "13",
-                        "name": "Queso",
-                        "price": 1
-                    },
-                    {
-                        "id": "14",
-                        "name": "Huevo",
-                        "price": 1
-                    }
-                ]
-            },
-            {
-                "id": "6",
-                "name": "doble",
-                "price": 15,
-                "type": [
-                    {
-                        "name": "res"
-                    },
-                    {
-                        "name": "pollo"
-                    },
-                    {
-                        "name": "vegetariana"
-                    }
-                ],
-                "extra": [
-                    {
-                        "id": "15",
-                        "name": "Queso",
-                        "price": 1
-                    },
-                    {
-                        "id": "16",
-                        "name": "Huevo",
-                        "price": 1
-                    }
-                ]
-            }
-        ]
     }
 ]

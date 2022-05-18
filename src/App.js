@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <div className='container'>
-        <Navbar
+        <Navbar className='header'
           color='ligth'
           expand="lg"
           fixed=""
@@ -19,7 +19,7 @@ function App() {
           <NavbarBrand>
             <Link to='/'><img width='50%' src={logo} alt='logo del sitio' /></Link>
           </NavbarBrand>
-          <Collapse className='btn-group-lg' navbar>
+          <Collapse className='btn-group-lg menu' navbar>
             <Link to='/garzones' className='btn btn-outline-warning'>GARZONES</Link>
             <Link to='/cocina' className='btn btn-outline-warning'>COCINA</Link>
           </Collapse>

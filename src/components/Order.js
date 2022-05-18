@@ -2,12 +2,12 @@ import React from 'react';
 import { Table, Button } from 'reactstrap';
 
 function TableHeader(props) {
-    const {numberTable} = props;
+    const {dataTables} = props;
     return (
         <thead>
             <tr>
                 <th>Ud.</th>
-                <th>Mesa</th>
+                <th>Mesa{dataTables[0]}</th>
                 <th>Precio</th>
                 <th>Agregar</th>
                 <th>Eliminar</th>
@@ -28,10 +28,10 @@ function TableBody(props) {
                     <td>{item.name}</td>
                     <td>${item.price.toFixed(2)} c/u</td>
                     <td>
-                        <Button onClick={() => onAddOrder(item)} color="info">+</Button>
+                        <Button onClick={() => onAddOrder(item)} color="warning">+</Button>
                     </td>
                     <td>
-                        <Button onClick={() => onRemoveFood(item)} color='danger' close />
+                        <Button onClick={() => onRemoveFood(item)} close />
                     </td>
                 </tr>
             ))}
@@ -47,7 +47,7 @@ function TableFoot(props) {
         <tfoot>
             {orderFood.length !== 0 && (
                 <tr>
-                    <th>{totalFoods} productos</th>
+                    <th>{totalFoods} prod.</th>
                     <th>TOTAL A PAGAR:</th>
                     <th>${totalPrice.toFixed(2)}</th>
                     <th>
@@ -63,10 +63,10 @@ function TableFoot(props) {
 }
 
 function Order(props) {
-    const { numberTable, onAddOrder, onRemoveFood, orderFood } = props;
+    const { dataTables, onAddOrder, onRemoveFood, orderFood } = props;
     return (
-        <Table hover responsive className='table-info'>
-            <TableHeader orderFood={numberTable} />
+        <Table hover responsive className='table-warning'>
+            <TableHeader dataTables={dataTables} />
             <TableBody onAddOrder={onAddOrder} onRemoveFood={onRemoveFood} orderFood={orderFood} />
             <TableFoot orderFood={orderFood} />
         </Table>

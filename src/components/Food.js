@@ -5,30 +5,36 @@ function Food(props) {
     const { numberTable, tables, onAddOrder, foodB, foodL } = props;
     return (
         <div container>
-            <FormGroup>
-                <Label className='text-white' for="exampleSelect">
-                    MESA:
-                </Label>
-                <Input
-                    id="exampleSelect"
-                    name="select"
-                    type="select"
-                >
-                    <option selected value="all">Seleccionar</option>
-                    {tables.map(table => (
-                        <option onClick={() => numberTable(table)}>{table.number}</option>
-                    ))}
-                </Input>
-            </FormGroup>
-            <div>
-                <Button color="info" outline id='toggler' style={{ marginBottom: '1rem' }}>
+            <div className='submenu'>
+                <FormGroup className='submenu_mesa'>
+                    <Label className='text-white' for="exampleSelect">
+                        MESA:
+                    </Label>
+                    <Input className='submenu_mesa_input'
+                        id="exampleSelect"
+                        name="select"
+                        type="select"
+                    >
+                        <option selected value="all">Selec.</option>
+                        {tables.map(table => (
+                            <option onClick={() => numberTable(table)} key={table.number}>{table.number}</option>
+                        ))}
+                    </Input>
+                </FormGroup>
+                <Button color="danger" outline id='toggler' style={{ marginBottom: '1rem' }}>
                     DESAYUNO
                 </Button>
-                <UncontrolledCollapse toggler="#toggler">
+                <Button color="danger" outline id='toggler2' style={{ marginBottom: '1rem' }}>
+                    ALMUERZO & CENA
+                </Button>
+
+            </div>
+            <div>
+                <UncontrolledCollapse className='foods' toggler="#toggler">
                     {
                         foodB && foodB.map(order => {
                             return (
-                                <Button onClick={() => onAddOrder(order)} color='success' key={order.id}>
+                                <Button className='foods_btn' onClick={() => onAddOrder(order)} color='warning' key={order.id}>
                                     <p>{order.name}</p>
                                     <p>${order.price.toFixed(2)}</p>
                                 </Button>
@@ -36,33 +42,14 @@ function Food(props) {
                         })
                     }
                 </UncontrolledCollapse>
-            </div>
-            <div>
-                <Button color="info" outline id='toggler2' style={{ marginBottom: '1rem' }}>
-                    ALMUERZO
-                </Button>
-                <UncontrolledCollapse toggler="#toggler2">
+                <UncontrolledCollapse className='foods' toggler="#toggler2">
                     {
                         foodL && foodL.map(order => {
                             return (
-                                <Button onClick={() => onAddOrder(order)} color='success' key={order.id}>
+                                <Button className='foods_btn' onClick={() => onAddOrder(order)} color='warning' key={order.id}>
                                     <p>{order.name}</p>
                                     <p>${order.price}</p>
                                 </Button>
-                            )
-                        })
-                    }
-                    {
-                        foodL && foodL.map(order => {
-                            return (
-                                order.burger && order.burger.map(burger => {
-                                    return (
-                                        <Button onClick={() => onAddOrder(burger)} color='success' key={burger.id}>
-                                            <p>{burger.name}</p>
-                                            <p>${burger.price}</p>
-                                        </Button>
-                                    )
-                                })
                             )
                         })
                     }
